@@ -5,7 +5,7 @@ task = input("Choose a model by typing the corresponding number: \n1.MobileNet V
 #batch = int(input("Insert batch size"))
 #if (batch == 1): batch = None
 
-for batch in [2**i for i in range(1,6)]:
+for batch in [2**i for i in range(6)]:
 
     # Parameters of each model
     # Format = [link,batch_input_shape,datasetPath,isBackgroundIncluded]
