@@ -79,7 +79,7 @@ def iou_calc(labimg, pred):
 ###################################################################################################################################################################
 
 # Model Inference
-def modelInference(model_list):
+def modelInference(model_list,start,end):
 
     [link,batchshape,dataset,background] = model_list
 
@@ -89,8 +89,7 @@ def modelInference(model_list):
 
     # Load Model
 
-    model = tf.keras.Sequential([
-    hub.KerasLayer(link)])
+    model = tf.keras.Sequential([hub.KerasLayer(link)])
     model.build(batchshape)
     batch = batchshape[0]
 
@@ -105,7 +104,7 @@ def modelInference(model_list):
     data = np.zeros(tuple(batchshape))
     tracemalloc.start()
 
-    for file in tqdm(os.listdir(dataset)[:-1]):
+    for file in tqdm(os.listdir(dataset)[start:end]):
         image = Image.open(os.path.join(dataset, file), 'r')
         data[imagenum%batch,:] = prepare(os.path.join(dataset, file),batchshape[1]) # Preprocessing
         imagenum += 1
