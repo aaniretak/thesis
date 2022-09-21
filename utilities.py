@@ -138,7 +138,7 @@ def modelInference(model_list):
     memory = round(((tracemalloc.get_traced_memory()[1])/1024)) #peak memory usage   
     t1_acc = round((t1/(imagenum))*100,1) #top-1 accuracy
     t5_acc = round((t5/(imagenum))*100,1) #top-5 accuracy
-    throughput = round((imagenum)/sum(latency),2) 
+    throughput = float((imagenum)/sum(latency)) 
     tracemalloc.stop()
 
     return {'memory':memory,'top1': t1_acc,'top5':t5_acc,'avg(latency)':avg_lat,'latency':latency,'throughput':throughput}
